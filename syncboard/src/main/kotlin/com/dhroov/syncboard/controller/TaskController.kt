@@ -5,10 +5,14 @@ import com.dhroov.syncboard.service.TaskService
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
+
+@RestController
+@CrossOrigin(origins = ["http://localhost:3000"])
 class TaskController(private val taskService: TaskService) {
 
     // 1. Regular REST endpoint to get all tasks on page load
