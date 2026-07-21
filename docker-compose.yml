@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: syncboard-mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-syncboard}
+      MYSQL_USER: ${MYSQL_USER:-syncuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-syncpass}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+  # Uncomment below services to run full stack via Docker Compose
+  # backend:
+  #   build:
+  #     context: ./syncboard
+  #     dockerfile: Dockerfile
+  #   container_name: syncboard-backend
+  #   ports:
+  #     - "8080:8080"
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-syncboard}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  #     SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-syncuser}
+  #     SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-syncpass}
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+
+  # frontend:
+  #   build:
+  #     context: ./syncboard/syncboard-frontend
+  #     dockerfile: Dockerfile
+  #   container_name: syncboard-frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+
+volumes:
+  mysql_data:
