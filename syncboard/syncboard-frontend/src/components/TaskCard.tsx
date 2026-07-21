@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { Task, TaskPriority, TaskStatus } from '../types/Task';
-import { Edit3, Trash2, GripHorizontal, User as UserIcon, AlertTriangle } from 'lucide-react';
+import { Edit3, Trash2, GripHorizontal, User as UserIcon } from 'lucide-react';
 
 interface TaskCardProps {
   task: Task;
