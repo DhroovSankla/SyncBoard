@@ -1,5 +1,6 @@
 package com.dhroov.syncboard.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,9 +26,11 @@ public class BoardTask {
     private String description;
 
     @Builder.Default
+    @JsonProperty("xCoordinate")
     private Double xCoordinate = 100.0;
 
     @Builder.Default
+    @JsonProperty("yCoordinate")
     private Double yCoordinate = 100.0;
 
     @Enumerated(EnumType.STRING)
