@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Task, TaskPriority, TaskStatus } from '../types/Task';
+import { Task, TaskStatus } from '../types/Task';
 import { TaskCard } from './TaskCard';
 import { Filter, Search, RotateCcw } from 'lucide-react';
 
