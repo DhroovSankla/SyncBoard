@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Task, TaskPriority, TaskStatus } from '../types/Task';
-import { X, Check, FileText, User as UserIcon } from 'lucide-react';
+import { X, Check, User as UserIcon } from 'lucide-react';
 
 interface TaskFormModalProps {
   isOpen: boolean;
